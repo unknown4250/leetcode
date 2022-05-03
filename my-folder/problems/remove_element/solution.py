@@ -5,10 +5,11 @@ class Solution(object):
         :type val: int
         :rtype: int
         """
+        
         cnt = 0
-        for i in range(len(nums)):
-            if nums[i] != val:
-                nums[cnt] = nums[i]
-                cnt += 1
 
+        for num in nums:
+            if num != val:
+                nums[cnt] = num
+                cnt += 1
         return cnt
