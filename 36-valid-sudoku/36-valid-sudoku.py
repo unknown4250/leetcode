@@ -7,13 +7,11 @@ class Solution(object):
                 # row
                 if board[i][j] != "." and board[i][j] in arr_row:
                         return False
-                else:
-                        arr_row.append(board[i][j])
+                arr_row.append(board[i][j])
                 # column
                 if board[j][i] != "." and board[j][i] in arr_column:
                         return False
-                else:
-                        arr_column.append(board[j][i])
+                arr_column.append(board[j][i])
 
 
         # grid
@@ -24,6 +22,5 @@ class Solution(object):
                     for h in range(3):
                         if board[i+w][j+h] != "." and board[i+w][j+h]in arr_grid:
                             return False
-                        else:
-                            arr_grid.append(board[i+w][j+h])
+                        arr_grid.append(board[i+w][j+h])
         return True
