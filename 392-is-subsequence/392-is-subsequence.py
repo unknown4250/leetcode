@@ -5,6 +5,10 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
+        # dynamic programming
+        # https://leetcode.com/problems/is-subsequence/discuss/678389/Python-3-Solutions%3A-DP-2-pointers-and-follow-up-BS-explained
+   
+        # two pointers
         i = 0
         j = 0
 
