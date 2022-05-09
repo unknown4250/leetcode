@@ -16,5 +16,4 @@ class Solution(object):
         if i == len(s):
             return True
         else:
-            print(i, j)
             return False
