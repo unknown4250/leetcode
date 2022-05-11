@@ -1,24 +1,19 @@
 class Solution(object):
     def isHappy(self, n):
-         # We use a set to store the sume of squares at each step. Don't use a list, 
-        # because checking values in list takes O(n), but it takes O(1) for set.
-        n_set = set()
-        sqr = 0  
-        while sqr != 1:
-            sqr = 0  #This variable is set to zero at the beginning of each iteration.
-			
-            #This loop calculates the sum of the squares of digits in n:
-            while n > 0: 
-                sqr += (n % 10) ** 2
-                n = n // 10
-				
-            #If the number is happy, the sum of squares will be equal to 1, after a few iterations.
-            if sqr == 1: return True
-			
-            #If the number is not happy, at some point, the sum of squares will be repeated in a cycle, 
-			# meaning the code will repeat the same calculations over and over in an infinite loop. 
-			# So, we check if sqr has happened before:
-            elif sqr in n_set: return False
-            else: 
-                n = sqr       # repeat the process, but the new n will be equal to sum of the squares.
-                n_set.add(n)  # add the new n to the set in order to keep a record of sum of the squares.
+        # 각 step 마다 제곱의 합을 set에 저장
+        # set에 저장하는 이유? set은 값을 검색하는데 O(1)이 걸리는 반면, list는 O(n)이 걸리기 때문
+        check = set()
+
+        # 각 자리의 제곱을 더할 변수
+        sum_squares = 0  
+        while sum_squares != 1:        
+            # 입력 값의 자리수마다 제곱을 계산하기 위한 반복문
+            sum_squares = sum(int(i) ** 2 for i in str(n))
+
+            # "happy"하지 않다면, 그 숫자는 일정 싸이클을 가지고 있어서 제곱 합의 결과 값이 반복됨
+            # 그래서 set을 사용해서 중복된 값이 나왔었는지 확인하는 것
+            if sum_squares in check: return False
+            else:
+                n = sum_squares
+                check.add(sum_squares)
+        return True
