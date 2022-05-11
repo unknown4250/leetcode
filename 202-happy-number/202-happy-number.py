@@ -7,7 +7,8 @@ class Solution(object):
         # 각 자리의 제곱을 더할 변수
         sum_squares = 0  
         while sum_squares != 1:        
-            # 입력 값의 자리수마다 제곱을 계산하기 위한 반복문
+            # 입력 값의 자리수마다 제곱을 계산하기 위한 반복문 (for문 -> while로 변경)
+            # sum_squares = sum(int(i) ** 2 for i in str(n))
             sum_squares = 0
             while n >= 1:
                 sum_squares += (n % 10) ** 2
