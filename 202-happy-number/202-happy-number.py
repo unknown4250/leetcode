@@ -8,8 +8,10 @@ class Solution(object):
         sum_squares = 0  
         while sum_squares != 1:        
             # 입력 값의 자리수마다 제곱을 계산하기 위한 반복문
-            sum_squares = sum(int(i) ** 2 for i in str(n))
-
+            sum_squares = 0
+            while n >= 1:
+                sum_squares += (n % 10) ** 2
+                n //= 10 
             # "happy"하지 않다면, 그 숫자는 일정 싸이클을 가지고 있어서 제곱 합의 결과 값이 반복됨
             # 그래서 set을 사용해서 중복된 값이 나왔었는지 확인하는 것
             if sum_squares in check: return False
