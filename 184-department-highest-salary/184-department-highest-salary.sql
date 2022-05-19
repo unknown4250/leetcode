@@ -1,17 +1,15 @@
 SELECT 
-    dep.Name as Department,
-    emp.Name as Employee,
-    emp.Salary 
-from 
-    Department dep,
-    Employee emp 
+    dep.name AS Department,
+    emp.name AS Employee,
+    emp.salary AS Salary
+FROM Department dep, Employee emp 
 where 
     emp.DepartmentId = dep.Id 
-and 
-    emp.Salary=
-        (Select 
-            max(Salary) 
-         from 
+AND 
+    emp.salary=
+        (SELECT 
+            MAX(Salary) 
+         FROM
             Employee emp2 
-         where 
+         WHERE 
             emp2.DepartmentId=dep.Id)
