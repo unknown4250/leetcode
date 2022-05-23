@@ -5,7 +5,7 @@ class Solution(object):
         :type s2: str
         :rtype: bool
         """
-
+        """
         if s1 == s2: return True
         
         mismatched = []
@@ -19,3 +19,13 @@ class Solution(object):
         s1[mismatched[0]], s1[mismatched[1]] = s1[mismatched[1]], s1[mismatched[0]]
         
         return "".join(s1) == s2
+        """
+        
+
+        mismatched_cnt = 0
+
+        for i, j in zip(s1, s2):
+            if i != j:
+                mismatched_cnt += 1
+        
+        return (Counter(s1) == Counter(s2)) and (mismatched_cnt == 0 or mismatched_cnt == 2)
