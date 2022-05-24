@@ -8,14 +8,16 @@ class Node(object):
 
 class Solution(object):
     def preorder(self, root):
-        output = []
-        self.dfs(root, output)
-        return output
-        
-    def dfs(self, root, res):
-        if not root:
-            return
+        """
+        :type root: Node
+        :rtype: List[int]
+        """
 
-        res.append(root.val)
-        for child in root.children:
-            self.dfs(child, res)
+        def solve(root, res):
+            if root:
+                res.append(root.val)
+
+                for child in root.children:
+                    solve(child, res)
+            return res
+        return solve(root, [])
