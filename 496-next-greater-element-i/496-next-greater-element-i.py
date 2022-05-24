@@ -5,7 +5,7 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: List[int]
         """
-        
+        """
         res = [-1] * len(nums1)
         for i in range(len(nums1)):
             num = nums1[i]
@@ -24,3 +24,14 @@ class Solution(object):
                     break
                 idx2 += 1
         return res
+        """
+        temp_dict, stack = {}, []
+        for n in nums2:
+            while stack and stack[-1] < n:
+                temp_dict[stack.pop()] = n
+            stack.append(n)
+        result = [-1]*len(nums1)
+        for idx, n in enumerate(nums1):
+            if n in temp_dict:
+                result[idx] = temp_dict[n]
+        return result
