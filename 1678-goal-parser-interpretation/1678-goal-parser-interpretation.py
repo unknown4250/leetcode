@@ -4,7 +4,5 @@ class Solution(object):
         :type command: str
         :rtype: str
         """
-        command = command.replace("()", "o")
-        command = command.replace("(al)", "al")
-        return command
+        return command.replace("()", "o").replace("(al)", "al")
         
