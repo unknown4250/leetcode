@@ -1,17 +1,32 @@
 class Solution(object):
     def longestPalindrome(self, s):
-        if len(s) == 1: return s
+        """
+        :type s: str
+        :rtype: str
+        """
+        
+        # https://leetcode.com/problems/longest-palindromic-substring/discuss/900639/Python-Solution-%3A-with-detailed-explanation-%3A-using-DP
+        
+        n = len(s)
+        longest_palindrom = ''
 
-        start, length = 0, 0
-
-        for end in range(len(s)):
-            # 기존 Palindromic Substring에 end포인트의 문자를 포함해도 Palindrome했을 때, 조건 만족
-            # Ex. aa(a)
-            if s[end-length:end+1] == s[end-length:end+1][::-1]:
-                start, length = end-length, length + 1
-            # 기존 Palindromic Substring에 end포인트의 문자와 Substring의 앞의 문자를 포함해도 Palindrome
-            # Ex. (b)aaa(b)
-            elif end - length >= 1 and s[end-length-1:end+1] == s[end-length-1:end+1][::-1]:
-                start, length = end - length - 1, length + 2
-
-        return s[start:start+length]
+        dp = [[False]*n for _ in range(n)]
+        #filling out the diagonal by 1
+        for i in range(n):
+            dp[i][i] = True
+            longest_palindrom = s[i]
+			
+        # filling the dp table
+        for i in range(n-1, -1, -1):
+				# j starts from the i location : to only work on the upper side of the diagonal 
+            for j in range(i+1, n):  
+                if s[i] == s[j]:  #if the chars mathces
+                    # if len slicied sub_string is just one letter if the characters are equal, we can say they are palindomr dp[i][j] =True 
+                    #if the slicied sub_string is longer than 1, then we should check if the inner string is also palindrom (check dp[i+1][j-1] is True)
+                    if j-i ==1 or dp[i+1][j-1] is True:
+                        dp[i][j] = True
+                        # we also need to keep track of the maximum palindrom sequence 
+                        if len(longest_palindrom) < len(s[i:j+1]):
+                            longest_palindrom = s[i:j+1]
+                
+        return longest_palindrom
