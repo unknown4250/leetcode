@@ -4,5 +4,6 @@ class Solution(object):
         :type candyType: List[int]
         :rtype: int
         """
+        lst_len, set_len = len(candyType), len(set(candyType))
         
-        return len(set(candyType)) if len(candyType)/2 > len(set(candyType)) else len(candyType) // 2
+        return set_len if lst_len / 2 > set_len else lst_len // 2
