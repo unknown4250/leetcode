@@ -9,10 +9,7 @@ class MyStack(object):
         :type x: int
         :rtype: None
         """
-        if self.queue1 or (not self.queue1 and not self.queue2):
-            self.queue1.append(x)
-        else:
-            self.queue2.append(x)
+        self.queue1.append(x)
         return None
         
 
@@ -20,36 +17,28 @@ class MyStack(object):
         """
         :rtype: int
         """
-        if self.queue1:
-            while self.queue1:
-                self.queue2.append(self.queue1.popleft())
-            return self.queue2.pop()
-        else:
-            while self.queue2:
-                self.queue1.append(self.queue2.popleft())
-            return self.queue1.pop()
+        res = None
+        while len(self.queue1) > 1:
+            self.queue2.append(self.queue1.popleft())
+
+        if len(self.queue1) == 1:
+            res = self.queue1.popleft()
+            self.queue1, self.queue2 = self.queue2, self.queue1
+        return res
         
 
     def top(self):
         """
         :rtype: int
         """
-        if self.queue1:
-            while self.queue1:
-                self.queue2.append(self.queue1.popleft())
-            return self.queue2[-1]
-        else:
-            while self.queue2:
-                self.queue1.append(self.queue2.popleft())
-            return self.queue1[-1]
+        return self.queue1[-1]
         
 
     def empty(self):
         """
         :rtype: bool
         """
-        return False if self.queue1 or self.queue2 else True
-        
+        return False if self.queue1 else True
 
 
 # Your MyStack object will be instantiated and called as such:
