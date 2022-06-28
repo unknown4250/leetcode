@@ -12,7 +12,7 @@ class Solution(object):
         n = len(num)
         l, r = 0, n - 1
 
-        while l < r and l <= n // 2 and r >= n // 2:
+        while l < r:
             if num[l] != num[r]:
                 return False
             l += 1
