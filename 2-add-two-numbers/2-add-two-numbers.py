@@ -45,6 +45,6 @@ class Solution(object):
         a = self.toList(self.reverseList(l1)) # a = [3, 4, 2]
         b = self.toList(self.reverseList(l2)) # b = [4, 6, 5]
     
-        result_str = int(''.join(str(e) for e in a)) + int(''.join(str(e) for e in b))
+        result_str = int(''.join(map(str, a))) + int(''.join(map(str, b)))
         
         return self.toReversedList(str(result_str))
