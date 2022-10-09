@@ -19,6 +19,6 @@ class Solution:
         
         dfs(nums)
         # itertools 이용 풀이
-        # return list(itertools.permutations(nums))
+        # return list(map(list, itertools.permutations(nums)))
         return results
     
