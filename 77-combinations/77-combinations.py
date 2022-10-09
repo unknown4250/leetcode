@@ -16,5 +16,5 @@ class Solution:
         dfs([], 1, k)
         
         # itertools 라이브러리 사용
-        # return list(map, itertools.combinations(range(1, n+1), k))
+        # return list(itertools.combinations(range(1, n+1), k))
         return results
