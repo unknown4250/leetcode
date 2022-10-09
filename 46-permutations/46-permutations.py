@@ -18,4 +18,7 @@ class Solution:
                 prev_elements.pop()
         
         dfs(nums)
+        # itertools 이용 풀이
+        # return list(itertools.permutations(nums))
         return results
+    
