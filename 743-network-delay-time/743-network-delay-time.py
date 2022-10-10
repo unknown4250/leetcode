@@ -7,20 +7,20 @@ class Solution:
             graph[u].append((v, w))
             
         # 큐 : [(소요시간, 정점)]
-        priority_queue = [(0, k)]
+        my_queue = [(0, k)]
         
         dist = collections.defaultdict(list)
         
         # 우선순위 큐 최솟값 기준으로 정점까지 최단 경로 삽입
-        while priority_queue:
-            time, node = heapq.heappop(priority_queue)
+        while my_queue:
+            time, node = heapq.heappop(my_queue)
             
             if not node in dist:
                 dist[node] = time
                 
                 for v, w in graph[node]:
                     alt = time + w
-                    heapq.heappush(priority_queue, (alt, v))
+                    heapq.heappush(my_queue, (alt, v))
                     
         # 모든 노드의 최단 경로 존재 여부 판별
         if len(dist) == n:
