@@ -9,10 +9,10 @@ class Solution:
         visited = set()
         
         def dfs(i):
-            
+            # 순환 구조라면 False
             if i in traced:
                 return False
-            
+            # 방문했던 노드라면 True
             if i in visited:
                 return True
             
@@ -21,17 +21,17 @@ class Solution:
             for course2 in graph[i]:
                 if not dfs(course2):
                     return False
-                
-            traced.remove(i)
             
+            # 탐색 종료 후, 새로운 탐색 위해서 순환 노드 삭제
+            traced.remove(i)
+            # 탐색 종료 후, 방문 표시
             visited.add(i)
             
             return True
         
-        
+        # 순환 판별
         for course1 in list(graph):
             if not dfs(course1):
                 return False
         
         return True
-            
