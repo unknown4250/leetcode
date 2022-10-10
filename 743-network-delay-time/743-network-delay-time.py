@@ -19,8 +19,7 @@ class Solution:
                 dist[node] = time
                 
                 for v, w in graph[node]:
-                    alt = time + w
-                    heapq.heappush(my_queue, (alt, v))
+                    heapq.heappush(my_queue, (time + w, v))
                     
         # 모든 노드의 최단 경로 존재 여부 판별
         if len(dist) == n:
