@@ -6,6 +6,9 @@ class Solution:
             graph[u].append((v, w))
         
         my_queue = [(0, src, k+1)]
+        
+        # 그래프에 loop 있는 경우, time limit 발생함
+        # 최소 비용으로 특정 노드에 가기까지 남아있는 횟수 기록
         visited = [0] * n
         
         while my_queue:
