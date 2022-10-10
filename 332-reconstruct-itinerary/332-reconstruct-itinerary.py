@@ -17,5 +17,5 @@ class Solution:
         
         dfs('JFK')
         
-        # 다시 뒤집어서 어휘 순 결과로
+        # 다시 뒤집어서 방문 순으로
         return route[::-1]
