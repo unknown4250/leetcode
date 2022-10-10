@@ -17,5 +17,6 @@ class Solution:
         
         dfs('JFK')
         
-        # 다시 뒤집어서 방문 순으로
+        # dfs에 의해 경로가 역순으로 구성됨
+        # 따라서 뒤집어야 JFK에서 출발하는 경로 완성됨
         return route[::-1]
