@@ -13,7 +13,7 @@ class Solution(object):
         for n1 in nums1:
             i2 = bisect_left(nums2, n1)
 
-            if len(nums2) > 0  and len(nums2) > i2 and nums2[i2] == n1:
+            if len(nums2) > 0 and len(nums2) > i2 and nums2[i2] == n1:
                 result.add(n1)
 
         return list(result)
