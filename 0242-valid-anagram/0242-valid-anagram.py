@@ -5,9 +5,11 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
+        """
+        # 1. Counter 사용 버전
         counter1 = Counter()
         counter2 = Counter()
-
+        
         # 두 입력 문자열의 길이가 다르면 False 리턴
         if len(s) != len(t):
             return False
@@ -19,5 +21,28 @@ class Solution(object):
         
         # 두 카운터가 같으면 True, 다르면 False 리턴
         return True if counter1 == counter2 else False
+        """
         
+        # 2. 한 줄 버전
+        # return sorted(s) == sorted(t)
+        
+        # 3. 딕셔너리로 카운터 직접 만들기
+        dict = {}
+
+        for ch in s:
+            if ch in dict:
+                dict[ch] += 1
+            else:
+                dict[ch] = 1
+
+        for ch in t:
+            if ch in dict:
+                dict[ch] -= 1
+            else:
+                return False
+
+        for val in dict.values():
+            if val != 0:
+                return False
+        return True
         
