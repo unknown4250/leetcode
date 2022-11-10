@@ -11,17 +11,18 @@ class MyQueue(object):
         :rtype: None
         """
         self.in_stack.append(x)
-        
 
     def pop(self):
         """
         :rtype: int
         """
-        self.peek()
+        if not self.out_stack:
+            while self.in_stack:
+                self.out_stack.append(self.in_stack.pop())
+
         return self.out_stack.pop()
         
-        return val
-    
+
     def peek(self):
         """
         :rtype: int
@@ -31,7 +32,6 @@ class MyQueue(object):
                 self.out_stack.append(self.in_stack.pop())
                 
         return self.out_stack[-1]
-        
 
     def empty(self):
         """
@@ -41,6 +41,7 @@ class MyQueue(object):
             return True
         else:
             return False
+                    
         
 
 
