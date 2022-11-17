@@ -14,8 +14,12 @@ class Solution(object):
         # 최소 값(nums[i])은 고정하고 합이 0이 되는 나머지 두 숫자 찾기
         # 투-포인터 방식
         for i in range(len(nums) - 2):
+            if nums[i] > 0:
+                break
+                
             left, right = i + 1, len(nums) - 1
 
+            
             if i > 0 and nums[i] == nums[i-1]:
                 continue
 
