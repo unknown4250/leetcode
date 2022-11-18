@@ -22,15 +22,19 @@ class TimeMap(object):
         
         val = self.map[key]
         
+        # key가 저장되어 있지 않은 경우
         if not val:
             return ''
         
+        # 저장된 가장 큰 timestamp 보다 찾으려는 timestamp가 큰 경우
         if timestamp > val[-1][0]:
             return val[-1][1]
         
+        # 저장된 가장 작은 timestamp 보다 찾으려는 timestamp가 작은 경우
         if timestamp < val[0][0]:
             return ''
         
+        # 이진탐색
         left, right = 0, len(val) - 1
         
         while left <= right:
