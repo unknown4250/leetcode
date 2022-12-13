@@ -1,36 +1,36 @@
 class Solution(object):
     def exist(self, board, word):
-
-        def backtracking(x, y, candidate):
-            # word 끝까지 탐색 완료했으면 존재하는 단어가 있다는 의미, True 리턴
-            if len(candidate) == 0:
-                return True
-
-            # board 범위 벗어난 경우 False 리턴
-            if x < 0 or x >= len(board) or y < 0 or y >= len(board[0]):
-                return False
-
-            # 현재 위치의 문자와 단어의 문자가 같은 경우
-            if board[x][y] == candidate[0]:
-                # 현재 위치를 재탐색하지 않기 위해 값 변경
-                board[x][y] = '-'
-
-                # 상하좌우 탐색
-                if backtracking(x+1, y, candidate[1:]) or backtracking(x-1, y, candidate[1:]) or \
-                    backtracking(x, y+1, candidate[1:]) or backtracking(x, y-1, candidate[1:]):
-                        return True
-
-                # 백트래킹을 위해 원래 값으로 변경
-                board[x][y] = candidate[0]
-
+        
+        if not board:
             return False
-            
-        # board의 전체 값 탐색
-        for i in range(len(board)):
-            for j in range(len(board[i])):
-                if backtracking(i, j, word):
-                    return True
-        return False           
 
+        visited = [[False for _ in range(len(board[0]))] for _ in range(len(board))]
+
+        for row in range(len(board)):
+            for col in range(len(board[0])):
+                if self.dfs(board, word, visited, row, col):
+                    return True
+        return False
+    
+    # check whether can find word, start at (i,j) position
+    def dfs(self, board, word, visited, i, j):
+        # all characters are checked
+        if not word: 
+            return True
         
+        if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or \
+            visited[i][j] or word[0] != board[i][j]:
+            return False
         
+        visited[i][j] = True
+
+        if self.dfs(board, word[1:], visited, i-1, j) or \
+                self.dfs(board, word[1:], visited, i+1, j) or \
+                self.dfs(board, word[1:], visited, i, j-1) or \
+                self.dfs(board, word[1:], visited, i, j+1):
+                return True
+        
+        # there is no solution in the path so reset the candidacy of that position
+        visited[i][j] = False
+
+        return False
