@@ -1,21 +1,14 @@
 class Solution(object):
     def minCostClimbingStairs(self, cost):
-        # dp 배열 초기화
-        dp = [0] * len(cost)
-        
-        # 예외처리
-        if not cost:
-            return 0
-        
-        elif len(cost) == 1:
-            return cost[0]
-
-        # 인덱스 0, 1번째 값으로 초기화
-        dp[0] = cost[0]
-        dp[1] = cost[1]
+        """
+        # [10,15,20] = (시작) → 10 → 15 → 20 → (종료)
+        # 한 번에 1개 혹은 2개의 계단을 오를 수 있음
+        # 가능한 경우의 수 : (10, 15, 20), (10, 15), (10, 20), (15, 20), (15)
+        """
+        min_cost = [0] * len(cost)
+        min_cost[0], min_cost[1] = cost[0], cost[1]
 
         for i in range(2, len(cost)):
-            # 현재 위치까지의 최소 비용 : 현재 비용 + 1스텝 전 or 2스텝 전 중 최솟값
-            dp[i] = cost[i] + min(dp[i-1], dp[i-2])
+            min_cost[i] = min(min_cost[i-2] + cost[i], min_cost[i-1] + cost[i])
 
-        return min(dp[-1], dp[-2])
+        return min(min_cost[len(cost) - 1], min_cost[len(cost) - 2])
