@@ -1,5 +1,14 @@
 class Solution(object):
     def largestPalindromic(self, num):
+        """
+        # Most Votes code in Discuss
+        
+        count = Counter(num)
+        res = ''.join(count[i] // 2 * i for i in '9876543210').lstrip('0')
+        mid = max(count[i] % 2 * i for i in count)
+        return (res + mid + res[::-1]) or '0'
+        """
+        
 
         counter = [0] * 10
 
